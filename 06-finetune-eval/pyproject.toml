@@ -1,0 +1,19 @@
+[project]
+name = "finetune-eval"
+version = "0.1.0"
+description = "Per-example before/after evaluation for fine-tuned models -- catches regressions that aggregate accuracy hides."
+readme = "README.md"
+requires-python = ">=3.9"
+license = {text = "MIT"}
+dependencies = []
+
+[project.optional-dependencies]
+training = ["unsloth", "transformers>=4.40", "datasets>=2.19", "peft>=0.10"]
+dev = ["pytest>=7.0"]
+
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+include = ["finetune_eval*"]

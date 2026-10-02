@@ -1,0 +1,22 @@
+[project]
+name = "tracewright"
+version = "0.1.0"
+description = "Debug AI agent runs by tracing every LLM/tool call and automatically diagnosing where things went wrong."
+readme = "README.md"
+requires-python = ">=3.9"
+license = {text = "MIT"}
+dependencies = []
+
+[project.optional-dependencies]
+openai = ["requests>=2.28"]
+dev = ["pytest>=7.0"]
+
+[project.scripts]
+tracewright = "tracewright.cli:main"
+
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+include = ["tracewright*"]

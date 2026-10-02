@@ -1,0 +1,23 @@
+[project]
+name = "promptcheck"
+version = "0.1.0"
+description = "Unit tests for prompts. Catch silent prompt regressions in CI using pytest."
+readme = "README.md"
+requires-python = ">=3.9"
+license = {text = "MIT"}
+dependencies = []
+
+[project.optional-dependencies]
+pytest = ["pytest>=7.0"]
+openai = ["requests>=2.28"]
+dev = ["pytest>=7.0"]
+
+[project.entry-points.pytest11]
+promptcheck = "promptcheck.pytest_plugin"
+
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+include = ["promptcheck*"]

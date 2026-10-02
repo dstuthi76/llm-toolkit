@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8"><title>tracewright report</title>
+<style>
+  body { font-family: -apple-system, sans-serif; max-width: 900px; margin: 40px auto; padding: 0 20px; background: #0f1115; color: #e6e6e6; }
+  h1 { font-size: 20px; }
+  .verdict { display: inline-block; padding: 4px 12px; border-radius: 6px; font-weight: 600; }
+  .success { background: #1a3d2e; color: #6ee7a8; }
+  .suspect { background: #3d331a; color: #f5c563; }
+  .failed  { background: #3d1a1a; color: #f57070; }
+  .unknown { background: #2a2a2a; color: #aaa; }
+  .span { border: 1px solid #2a2d35; border-radius: 8px; padding: 12px 16px; margin: 10px 0; background: #171a21; }
+  .span.root { border-color: #f57070; box-shadow: 0 0 0 1px #f57070; }
+  .span.errored { border-left: 4px solid #f57070; }
+  .meta { color: #888; font-size: 12px; }
+  pre { white-space: pre-wrap; word-break: break-word; background: #0b0d11; padding: 8px; border-radius: 6px; font-size: 12px; }
+  .badge { font-size: 11px; padding: 2px 8px; border-radius: 10px; background: #2a2d35; margin-right: 6px; }
+</style></head><body>
+<h1>tracewright report</h1>
+<p><b>Task:</b> Book a round-trip flight to Paris under $800</p>
+<p><span class="verdict suspect">suspect</span>
+   (root cause: step 2)</p>
+<p class="meta">Step 2 (&#x27;search_flights&#x27;) returned an empty result, which may have starved later steps of information.</p>
+<h2>Steps (3)</h2>
+<div class="span ">
+  <span class="badge">tool_call</span> <b>check_calendar</b>
+  <span class="meta">step 1 · 0.0ms</span>
+  <pre>input:  {&#x27;args&#x27;: (), &#x27;kwargs&#x27;: {}}
+output: {&#x27;free_dates&#x27;: [&#x27;2026-11-03&#x27;, &#x27;2026-11-10&#x27;]}</pre>
+</div>
+<div class="span root">
+  <span class="badge">tool_call</span> <b>search_flights</b>
+  <span class="meta">step 2 · 0.0ms · ⚠ ROOT CAUSE</span>
+  <pre>input:  {&#x27;args&#x27;: (&#x27;Paris&#x27;, &#x27;2026-11-03&#x27;), &#x27;kwargs&#x27;: {}}
+output: []</pre>
+</div>
+<div class="span ">
+  <span class="badge">llm_call</span> <b>gpt-4o-mini</b>
+  <span class="meta">step 3 · 0.0ms</span>
+  <pre>input:  {&#x27;args&#x27;: ([],), &#x27;kwargs&#x27;: {}}
+output: I could not find any flights matching your criteria.</pre>
+</div>
+</body></html>

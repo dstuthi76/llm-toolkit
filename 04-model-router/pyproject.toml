@@ -1,0 +1,22 @@
+[project]
+name = "modelrouter"
+version = "0.1.0"
+description = "Route queries to a cheap model by default, escalate to an expensive one only when confidence is low. Drop-in OpenAI-compatible proxy."
+readme = "README.md"
+requires-python = ">=3.9"
+license = {text = "MIT"}
+dependencies = []
+
+[project.optional-dependencies]
+openai = ["requests>=2.28"]
+dev = ["pytest>=7.0"]
+
+[project.scripts]
+modelrouter = "modelrouter.__main__:main"
+
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+include = ["modelrouter*"]

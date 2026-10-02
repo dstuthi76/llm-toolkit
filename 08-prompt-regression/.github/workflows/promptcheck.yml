@@ -1,0 +1,21 @@
+name: Prompt regression tests
+
+on:
+  pull_request:
+    paths:
+      - '**/prompts/**'
+      - '**/*prompt*.py'
+      - 'prompt_tests/**'
+
+jobs:
+  promptcheck:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: pip install promptcheck pytest
+      - run: pytest prompt_tests/ --llm-report -v
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
